@@ -7,7 +7,7 @@ using namespace std;
 #define hiddenNodeCnt 24 // 은닉층 노드 갯수
 #define inputNodeCnt 25 // 입력층 노드 갯수
 
-double weight = 0.7; // 가중치
+double weight = 0.1; // 가중치
 double eta = 0.1; // eta 값
 double offset = 0.1; // offset 값
 int epoch = 0; // epoch 학습 모델 가중치 수정 싸이클 횟수 계산
@@ -38,7 +38,7 @@ int main() {
       BInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // BstudyPattern 가중치 변화량
 
 
-   int CstudyPattern[inputNodeCnt] = {1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,1,1,1,1}; // CstudyPattern 학습 패턴
+   int CstudyPattern[inputNodeCnt] = {1,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1}; // CstudyPattern 학습 패턴
    int Cpoint[outputNodeCnt] = { 0,0,1,0,0,0,0,0,0,0 }; // CstudyPattern 교사 신호
    double CHidToOut[hiddenNodeCnt], // CstudyPattern 은닉층 -> 출력층 출력 값
       Cresult[outputNodeCnt], // CstudyPattern 교사 신호 결과
@@ -49,7 +49,7 @@ int main() {
       CHidToOutCompare[outputNodeCnt][hiddenNodeCnt], // CstudyPattern 가중치 변화량
       CInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // CstudyPattern 가중치 변화량
 	
-   int DstudyPattern[inputNodeCnt] = {1,0,0,0,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1}; // DstudyPattern 학습 패턴
+   int DstudyPattern[inputNodeCnt] = {0,0,1,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,1,0,0,0,1}; // DstudyPattern 학습 패턴
    int Dpoint[outputNodeCnt] = { 0,0,0,1,0,0,0,0,0,0 }; // DstudyPattern 교사 신호
    double DHidToOut[hiddenNodeCnt], // DstudyPattern 은닉층 -> 출력층 출력 값
       Dresult[outputNodeCnt], // DstudyPattern 교사 신호 결과
@@ -60,7 +60,7 @@ int main() {
       DHidToOutCompare[outputNodeCnt][hiddenNodeCnt], // DstudyPattern 가중치 변화량
       DInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // DstudyPattern 가중치 변화량
 	
-   int EstudyPattern[inputNodeCnt] = {0,0,1,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,1,0,0,0,1}; // EstudyPattern 학습 패턴
+   int EstudyPattern[inputNodeCnt] = {0,1,1,1,0,1,1,0,1,1,1,0,0,0,1,1,1,0,1,1,0,1,1,1,0}; // EstudyPattern 학습 패턴
    int Epoint[outputNodeCnt] = { 0,0,0,0,1,0,0,0,0,0 }; // EstudyPattern 교사 신호
    double EHidToOut[hiddenNodeCnt], // EstudyPattern 은닉층 -> 출력층 출력 값
       Eresult[outputNodeCnt], // EstudyPattern 교사 신호 결과
@@ -71,7 +71,7 @@ int main() {
       EHidToOutCompare[outputNodeCnt][hiddenNodeCnt], // EstudyPattern 가중치 변화량
       EInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // EstudyPattern 가중치 변화량
 	
-   int FstudyPattern[inputNodeCnt] = {0,1,1,1,0,1,1,0,1,1,1,0,0,0,1,1,1,0,1,1,0,1,1,1,0}; // FstudyPattern 학습 패턴
+   int FstudyPattern[inputNodeCnt] = {1,1,1,1,1,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,1,0,0,0,1}; // FstudyPattern 학습 패턴
    int Fpoint[outputNodeCnt] = { 0,0,0,0,0,1,0,0,0,0 }; // FstudyPattern 교사 신호
    double FHidToOut[hiddenNodeCnt], // FstudyPattern 은닉층 -> 출력층 출력 값
       Fresult[outputNodeCnt], // FstudyPattern 교사 신호 결과
@@ -93,7 +93,7 @@ int main() {
       GHidToOutCompare[outputNodeCnt][hiddenNodeCnt], // GstudyPattern 가중치 변화량
       GInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // GstudyPattern 가중치 변화량
 	
-   int HstudyPattern[inputNodeCnt] = {1,1,1,1,0,1,0,0,0,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0}; // HstudyPattern 학습 패턴
+   int HstudyPattern[inputNodeCnt] = {0,1,1,1,1,0,1,0,0,0,0,1,1,1,1,0,1,0,0,0,0,1,1,1,1}; // HstudyPattern 학습 패턴
    int Hpoint[outputNodeCnt] = { 0,0,0,0,0,0,0,1,0,0 }; // HstudyPattern 교사 신호
    double HHidToOut[hiddenNodeCnt], // HstudyPattern 은닉층 -> 출력층 출력 값
       Hresult[outputNodeCnt], // HstudyPattern 교사 신호 결과
@@ -104,7 +104,7 @@ int main() {
       HHidToOutCompare[outputNodeCnt][hiddenNodeCnt], // HstudyPattern 가중치 변화량
       HInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // HstudyPattern 가중치 변화량
 	
-   int IstudyPattern[inputNodeCnt] = {0,1,1,1,0,1,0,0,0,0,1,0,1,1,0,1,0,0,1,0,0,1,1,1,0}; // IstudyPattern 학습 패턴
+   int IstudyPattern[inputNodeCnt] = {0,0,1,1,1,0,1,0,0,0,0,1,0,1,1,0,1,0,0,1,0,0,1,1,1}; // IstudyPattern 학습 패턴
    int Ipoint[outputNodeCnt] = { 0,0,0,0,0,0,0,0,1,0 }; // IstudyPattern 교사 신호
    double IHidToOut[hiddenNodeCnt], // IstudyPattern 은닉층 -> 출력층 출력 값
       Iresult[outputNodeCnt], // IstudyPattern 교사 신호 결과
@@ -115,7 +115,7 @@ int main() {
       IHidToOutCompare[outputNodeCnt][hiddenNodeCnt], // IstudyPattern 가중치 변화량
       IInToHidCompare[hiddenNodeCnt][inputNodeCnt]; // IstudyPattern 가중치 변화량
 	
-   int JstudyPattern[inputNodeCnt] = {1,0,0,1,0,1,0,0,1,0,1,1,1,1,0,1,0,0,1,0,1,0,0,1,0}; // JstudyPattern 학습 패턴
+   int JstudyPattern[inputNodeCnt] = {0,1,0,0,1,0,1,0,1,0,0,1,1,0,0,0,1,0,1,0,0,1,0,0,1}; // JstudyPattern 학습 패턴
    int Jpoint[outputNodeCnt] = { 0,0,0,0,0,0,0,0,0,1 }; // JstudyPattern 교사 신호
    double JHidToOut[hiddenNodeCnt], // JstudyPattern 은닉층 -> 출력층 출력 값
       Jresult[outputNodeCnt], // JstudyPattern 교사 신호 결과
@@ -1157,10 +1157,6 @@ int main() {
          inputPattern[i] = JstudyPattern[i];
       }
    }
-	
-	for(int i=0; i<outputNodeCnt; i++) {
-		cout << inputPoint[i] << " ";
-	}
 
    // 결과 패턴 출력
    cout << endl;
